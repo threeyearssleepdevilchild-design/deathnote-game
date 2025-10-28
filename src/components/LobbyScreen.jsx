@@ -96,13 +96,20 @@ export default function LobbyScreen({ roomId, nickname, playerCount, setCurrentS
       }
     }
   }
-
+// 配列をシャッフルする関数
+  const shuffleArray = (array) => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
   const startGame = async () => {
     if (!canStart) return
 
     try {
-      const playerNames = playersList.map(p => p.nickname)
-      
+      const playerNames = shuffleArray(playersList.map(p => p.nickname))
       // 正体カードと手札を配布
       const { distributeRoles, distributeInitialHands } = await import('../utils/gameUtils')
       const roleAssignments = distributeRoles(playerCount, playerNames)
