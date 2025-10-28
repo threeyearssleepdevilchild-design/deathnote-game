@@ -1583,7 +1583,7 @@ export default function InvestigationScreen({ roomId, nickname }) {
           {myHand.length === 0 ? (
             <p className="text-gray-400 text-center py-8">手札がありません</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {myHand.map((card, index) => (
               <div
                 key={`hand-${card.id || card.cardId}-${index}`}
@@ -1592,7 +1592,7 @@ export default function InvestigationScreen({ roomId, nickname }) {
                       handleCardClick(card, index)
                     }
                   }}
-                  className={`bg-gray-700 rounded-lg p-4 border-2 transition ${
+                  className={`bg-gray-700 rounded-lg p-3 sm:p-4 border-2 transition touch-manipulation ${
                     card.used ? 'opacity-50 border-gray-800' : ''
                   } ${
                     isMyTurn && gameData.phase === 'card_use' && !card.used
